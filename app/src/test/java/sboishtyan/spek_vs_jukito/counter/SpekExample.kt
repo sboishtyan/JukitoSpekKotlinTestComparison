@@ -12,8 +12,12 @@ import java.util.concurrent.TimeUnit
 @RunWith(JUnitPlatform::class)
 class SpekExample : Spek({
     given("SubscribersCounter and zeroSubscribers") {
-        val subscribersCounter = SubscribersCounterImpl()
-        val zeroSubscribers = subscribersCounter.zeroSubscribers().test()
+        var subscribersCounter = SubscribersCounterImpl()
+        var zeroSubscribers = subscribersCounter.zeroSubscribers().test()
+        beforeEachTest {
+            subscribersCounter = SubscribersCounterImpl()
+            zeroSubscribers = subscribersCounter.zeroSubscribers().test()
+        }
         val incrementsCount = listOf(1, 5, 10)
         val decrementCount = listOf(1, 5, 10)
         incrementsCount.forEach { incrementsCount ->

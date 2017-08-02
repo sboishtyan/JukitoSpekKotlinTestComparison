@@ -3,12 +3,13 @@ package sboishtyan.spek_vs_jukito.counter
 import org.junit.Test
 import rx.Observable
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * @author Sergey Boishtyan
  */
 class SubscribersCounterImplTest {
-    private val counterImpl = SubscribersCounterImpl()
+    private val counterImpl = SubscribersCounterImpl(AtomicInteger())
 
     @Test
     fun `given decrement calls less than increment calls then no emit ZeroSubscribersEvent`() {

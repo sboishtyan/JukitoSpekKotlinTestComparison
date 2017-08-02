@@ -1,5 +1,7 @@
 package sboishtyan.spek_vs_jukito.counter;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import rx.Completable;
 import rx.Observable;
 import rx.Single;
@@ -9,7 +11,7 @@ import rx.Single;
  */
 final class SubscribersCounterFactoryImpl implements ObservableSubscribersCounterFactory, SingleSubscribersCounterFactory, CompletableSubscribersCounterFactory {
 
-    private final SubscribersCounterImpl subscribersCounter = new SubscribersCounterImpl();
+    private final SubscribersCounterImpl subscribersCounter = new SubscribersCounterImpl(new AtomicInteger());
 
     @Override
     public SubscribersCounterProducer producer() {

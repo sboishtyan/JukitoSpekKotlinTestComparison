@@ -8,11 +8,12 @@ import org.junit.platform.runner.JUnitPlatform
 import org.junit.runner.RunWith
 import rx.Observable
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicInteger
 
 @RunWith(JUnitPlatform::class)
 class SpekExample : Spek({
     given("SubscribersCounter and zeroSubscribers") {
-        val subscribersCounter = SubscribersCounterImpl()
+        val subscribersCounter = SubscribersCounterImpl(AtomicInteger())
         val zeroSubscribers = subscribersCounter.zeroSubscribers().test()
         val incrementsCount = listOf(1, 5, 10)
         val decrementCount = listOf(1, 5, 10)

@@ -7,6 +7,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import rx.Observable
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicInteger
 
 @RunWith(JukitoRunner::class)
 class JukitoExample {
@@ -14,7 +15,7 @@ class JukitoExample {
         const val increment = "incrementCount"
         const val decrement = "decrementCount"
     }
-    private val counterImpl = SubscribersCounterImpl()
+    private val counterImpl = SubscribersCounterImpl(AtomicInteger())
 
     @Test
     fun `given subscribersCounter on incremen incrementCount times and decrement decrementCount times`(@All(increment) incrementCount: Int, @All(decrement) decrementCount: Int) {
